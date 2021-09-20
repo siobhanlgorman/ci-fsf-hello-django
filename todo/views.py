@@ -40,10 +40,16 @@ def edit_item(request, item_id):
     return render(request, 'todo/edit_item.html', context)
 
 
-# function to flip item's status from done to not done or vice versa
+# function to flip item's status from done to not done or vice versa, then save new status
 def toggle_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     item.done = not item.done
     item.save()
     return redirect('get_todo_list')
 
+
+# function to delete item then redirect
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    item.delete()
+    return redirect('get_todo_list')
