@@ -14,6 +14,10 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'todo/add_item.html')
 
     def test_get_edit_item_page(self):
+        response = self.client.get('/edit/99')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'todo/edit_item.html')
+
 
     def test_can_add_item(self):
 
